@@ -1,0 +1,120 @@
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../public/assets/css/lecss.css">
+{% endblock %}
+        {% block javascripts %}
+
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+            <script src="../public/assets/javascript/lejs.js"></script>
+
+
+        {% endblock %}
+
+{% block body %}
+
+    {{  include ('header.html.twig') }}
+
+
+    <div class="container">
+        <div class="row">
+            <div class="offset-md-2 col-6 text-center">
+
+
+                <h1>Inscription</h1>
+
+                {# On rajoute le novalidate pour enlever la validation html5 et permettre de voir la validation Symfony #}
+                <form action="{{ path('newprod') }}" method="post" novalidate="novalidate">
+
+
+
+
+
+                    <p>
+                        {# la fonction form_label génère la balise <label> #}
+                        <b>{{ form_label(form.libelle, "Nom  :", {}) }}</b> <br>
+                        {# la fonction form_label génère la balise <select> car c'est un ChoiceType #}
+                        {{ form_widget(form.libelle, {}) }}
+                    </p>
+
+
+
+                    <p>
+                        {# la fonction form_label génère la balise <label> #}
+                        <b> {{ form_label(form.prixht, "Prix  :", {}) }}</b> <br>
+                        {# la fonction form_label génère la balise <input type="text"> car c'est un TextType #}
+                        {{ form_widget(form.prixht, {}) }}
+                    </p>
+
+
+                    <p>
+                        {# la fonction form_label génère la balise <label> #}
+                        <b> {{ form_label(form.description, "Description  :", {}) }}</b> <br>
+                        {# la fonction form_label génère la balise <input type="email"> car c'est un EmailType #}
+                        {{ form_widget(form.description, {}) }}
+                    </p>
+
+                    {# Si j'ai une erreur de validation sur ce champ #}
+
+                    <p>
+                        {# la fonction form_label génère la balise <label> #}
+                        <b>  {{ form_label(form.stock, "stock  :", {}) }}</b> <br>
+                        {# la fonction form_label génère la balise <textarea> car c'est un TextareaType #}
+                        {{ form_widget(form.stock, {}) }}
+                    </p>
+
+
+                    <p>
+                        {# la fonction form_label génère la balise <label> #}
+                        <b>   {{ form_label(form.anne, "anne  :", {}) }} </b> <br>
+                        {# la fonction form_label génère la balise <textarea> car c'est un TextareaType #}
+                        {{ form_widget(form.anne, {}) }}
+                    </p>
+
+                    {# Si j'ai une erreur de validation sur ce champ #}
+
+                    <p>
+                        {# la fonction form_label génère la balise <label> #}
+                        <b>   {{ form_label(form.realisateur, "realisateur  :", {}) }}</b> <br>
+                        {# la fonction form_label génère la balise <textarea> car c'est un TextareaType #}
+                        {{ form_widget(form.realisateur, {}) }}
+                    </p>
+
+
+
+
+
+
+                    <p>
+                        {# la fonction form_label génère la balise <label> #}
+                        {# la fonction form_label génère la balise <textarea> car c'est un TextareaType #}
+                        {{ form_widget(form.image, {'value':"../../ppe4/public/assets/image/stock.jpg", 'attr' : { 'style':'display:none'}}) }}
+                    </p>
+
+
+
+
+
+                    {# Génère l'input secret pour la sécurité de la faille CSRF, qui s'appelle _token #}
+                    {# Ne pas s'en préoccuper, mais il faut toujours mettre le form_rest(), toujours #}
+                    {{ form_rest(form) }}
+
+                    <p>
+                        <input type="submit" value="Envoyer le formulaire" />
+                    </p>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+    {{  include ('footer.html.twig') }}
+{% endblock %}

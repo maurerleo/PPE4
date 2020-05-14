@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="lecss.css">
+    <link rel="stylesheet" href=" http://192.168.0.10:8082/ppe4/public/assets/css/lecss.css">
+
+
+{% endblock %}
+        {% block javascripts %}
+
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+            <script src="../../public/assets/javascript/lejs.js"></script>
+
+
+
+        {% endblock %}
+{% block title %}Modifier produit{% endblock %}
+
+{% block body %}
+    {{  include ('header.html.twig') }}
+
+    <h1>Edit Produit</h1>
+
+    {{ include('produit/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('admins') }}">Retour</a>
+
+
+
+
+
+
+
+    {{  include ('footer.html.twig') }}
+{% endblock %}

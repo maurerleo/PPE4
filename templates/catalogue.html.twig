@@ -1,0 +1,140 @@
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../public/assets/css/lecss.css">
+{% endblock %}
+        {% block javascripts %}
+
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+            <script src="../public/assets/javascript/lejs.js"></script>
+
+
+        {% endblock %}
+{% block body %}
+    {{  include ('header.html.twig') }}
+
+    {% if not is_granted('ROLE_USER') %}
+        <a href="{{ path('contact') }}">Connexion</a>
+    {% else %}
+        <span>Bonjour : {{ app.user.email }}</span>
+    {% endif %}
+
+    <div class="container-fluid">
+        <h1 id="test">Catalogue</h1>
+        <p>Retrouvez ici les films et séries que nous vous proposons</p>
+    </div>
+
+   <!-- <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="../../ppe4/public/assets/image/interstellar.jpg" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div> -->
+    <br>
+    <br>
+    <br>
+
+
+    <!-- <div id="demo" class="carousel slide" data-ride="carousel">
+
+
+      <ul class="carousel-indicators">
+          <li data-target="#demo" data-slide-to="0" class="active"></li>
+          <li data-target="#demo" data-slide-to="1"></li>
+          <li data-target="#demo" data-slide-to="2"></li>
+      </ul>
+
+
+      <div class="carousel-inner">
+          <div class="carousel-item active">
+              <img src="../public/assets/image/chicago.jpg" alt="Los Angeles">
+          </div>
+          <div class="carousel-item">
+              <img src="../public/assets/image/chicago.jpg" alt="Chicago">
+          </div>
+          <div class="carousel-item">
+              <img src="../public/assets/image/chicago.jpg" alt="New York">
+          </div>
+      </div>
+
+
+      <a class="carousel-control-prev" href="#demo" data-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+      </a>
+      <a class="carousel-control-next" href="#demo" data-slide="next">
+          <span class="carousel-control-next-icon"></span>
+      </a>
+
+  </div> -->
+
+    <div class="container">
+        <div class="row">
+            {% set index = 0 %}
+            {% set varpage = 1 %}
+            {% set classe = "card-hidden" %}
+
+            {% for prod in product %}
+
+                {% if index == 6 %}
+                {% set index = 0  %}
+                {% set varpage = varpage +1 %}
+                {% endif %}
+                {% if  app.request.get('id') is not null %}
+                    {% if  app.request.get('id') == varpage %}
+                        {% set classe = "" %}
+                        {% else %}
+                            {% set classe ="card-hidden" %}
+                        {% endif %}
+                {% else %}
+                    {% if varpage == 1 %}
+                        {% set classe = "" %}
+                        {% else %}
+                        {% set classe ="card-hidden" %}
+                    {% endif %}
+                {% endif %}
+
+
+                <div class="card {{ classe }}" style="width: 18rem;" data-pagination="{{ varpage }} ">
+                    <img class="card-img-top" src="{{ prod.image }}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ prod.libelle }} </h5>{{ prod.type }}
+                        <p class="card-text">{{ prod.realisateur }}</p>
+                        <p class="card-text">{{ prod.prixht }}€ <br> Stock : {{ prod.stock }}</p>
+                        <a href="{{ path('unproduit', {'id': prod.id }) }}" class="btn btn-primary">Plus d'informations</a> <br>
+
+
+
+                        <a href="{{ path('paniers_add', {'id_prod': prod.id } ) }}" class="btn btn-success">Ajouter au panier</a>
+
+                    </div>
+                </div>
+
+                {% set index = 1+ index %}
+
+            {% endfor %}
+
+
+        </div>
+        <div class="container">
+            <div class="row">
+        {% for i in 1..varpage %}
+            <a class="btn btn-primary espacebtn" href="{{ path('lesproduits', {'id': i }) }}">{{ i }}</a>
+        {% endfor %}
+    </div>
+        </div>
+
+
+
+    </div>
+
+
+    <br>
+    <br>
+
+
+    {{  include ('footer.html.twig') }}
+    <!-- Footer -->
+{% endblock %}

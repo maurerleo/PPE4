@@ -1,0 +1,69 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+index:
+  path: /acceuil
+  controller: App\Controller\AcceuilController::index
+pagegen:
+  path: /index
+  controller: App\Controller\AcceuilController::pagegen
+lesproduits:
+  path: /catalogue
+  controller: App\Controller\AcceuilController::catalogue
+lesfilm:
+  path: /film
+  controller: App\Controller\AcceuilController::catalogue
+contact:
+  path: /contact
+  controller: App\Controller\ContactController::contact
+admins:
+  path: /administrations
+  controller: App\Controller\AdminController::index
+admins_delete:
+  path: /administrations/suppr/{id}
+  controller: App\Controller\AdminController::suppr
+admin_change_role1:
+  path: /administrations/change1/{id}
+  controller: App\Controller\AdminController::chang1
+admin_change_role2:
+  path: /administrations/change2/{id}
+  controller: App\Controller\AdminController::chang2
+paniers_add:
+  path: /catalogue/{id_prod}
+  controller: App\Controller\AcceuilController::panier
+panier:
+  path: /panier
+  controller: App\Controller\AcceuilController::affichagepanier
+paniersuppr:
+  path: /paniersuppr
+  controller: App\Controller\AcceuilController::supprpanier
+lelogin:
+  path: /login
+  controller: App\Controller\SecurityController::login
+newprod:
+  path: /ajouterProd
+  controller: App\Controller\ProduitController::produitadd
+supprprod:
+  path: /administration/supprprod/{id}
+  controller: App\Controller\ProduitController::suppr
+newmag:
+  path: /ajoutemag
+  controller: App\Controller\MagasinController::magadd
+supprmag:
+  path: /administration/supprmag/{id}
+  controller: App\Controller\MagasinController::supprm
+deco:
+  path: /deco
+  controller: App\Controller\SecurityController::logout
+unproduit:
+  path: /catalogue/produit/{id}
+  controller: App\Controller\AcceuilController::affichageproduit
+api_contact:
+  path: /api/client/{id}
+  controller: App\Controller\ContactController::webserviceByid
+api_toutcontact:
+  path: /api/clien
+  controller: App\Controller\AcceuilController::webserviceAll
+api_toutproduit:
+  path: /api/produit
+  controller: App\Controller\ProduitController::webserviceAllp

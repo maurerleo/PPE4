@@ -1,0 +1,66 @@
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://192.168.0.10:8082/ppe4/public/assets/css/lecss.css">
+{% endblock %}
+        {% block javascripts %}
+
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+            <script src="http://192.168.0.10:8082/ppe4/public/assets/javascript/lejs.js"></script>
+
+
+        {% endblock %}
+{% block body %}
+
+    {{  include ('header.html.twig') }}
+
+<div class="container container-page ">
+    <style >
+        .container-page{
+        background: #d2d2d2;margin: 20px auto;
+            border: 5px solid black;
+        }
+        .affichageprod{
+            height: 400px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .affichageprod img{
+            height: 100%;
+            border: 2px solid black;
+        }
+        .description{
+            text-align: justify;
+        }
+        .description-prod{
+            padding: 40px 26px;
+        }
+        .type-prod{
+            font-size: 15px;
+
+        }
+
+
+    </style>
+    <div class="row">
+        <div class="col-md-6 affichageprod" >
+
+            <img src="{{ leproduit.affiche }}"/>
+        </div>
+        <div class="col-md-6 description-prod" >
+            <h2><b>{{ leproduit.libelle }}</b> <span class="type-prod">{{ leproduit.type }} </span></h2>
+            <p class="description">{{ leproduit.description }}</p>
+            <p><b>Réalisateur</b> {{ leproduit.realisateur }} <b>Année</b> :{{ leproduit.anne }} </p>
+            <p><b> Prix</b> :  {{ leproduit.prixht }}</p>
+            <p><b>Stock </b>: {{ leproduit.stock }}</p>
+            <a href="{{ path('paniers_add', {'id_prod': leproduit.id }) }}" class="btn btn-success">Ajouter au panier</a>
+        </div>
+    </div>
+</div>
+
+
+
+    {{  include ('footer.html.twig') }}
+
+{% endblock %}

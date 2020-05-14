@@ -1,0 +1,18 @@
+html,body{
+    min-height: 100vh;
+}
+.card{
+    margin: 20px auto;
+}
+.card-hidden{
+    display:none;
+}
+.espacebtn{
+    margin: 0px 5px;
+}
+.nav-link{
+    color: #000000 !important;
+}
+.footer-centre{
+    text-align: center !important;
+}

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Administration!{% endblock %}</title>
+
+
+
+</head>
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../public/assets/css/lecss.css">
+{% endblock %}
+{% block javascripts %}
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="../public/assets/javascript/lejs.js"></script>
+
+
+{% endblock %}
+
+<body>
+
+{% for flashMessage in app.session.flashbag.get('success') %}
+    <div class="alert alert-success" >
+        {{ flashMessage|raw }}
+    </div>
+{% endfor %}
+
+
+{% block body %}
+
+
+
+    {{  include ('header.html.twig') }}
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <br/>
+
+                <h1>Liste des utilisateurs</h1>
+
+                <br/>
+
+                {% if candidacies|length > 0 %}
+
+                    <table class="table table-sm table-hover table table-striped table-bordered ">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Mail</th>
+                            <th scope="col">Nom</th>
+                            <th scope="col">Prénom</th>
+                            <th scope="col">Adresse</th>
+                            <th scope="col">Rôle</th>
+
+                            <th scope="col">-</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for candidacy in candidacies %}
+                            <tr>
+                                <td><b>{{ candidacy.id }}</b></td>
+                                <td>{{ candidacy.email }}</td>
+                                <td>{{ candidacy.name }}</td>
+                                <td>{{ candidacy.firstname }}</td>
+                                <td>{{ candidacy.rue }} {{ candidacy.codep }}  {{ candidacy.ville }}</td>
+                                <td>{{ candidacy.role }}</td>
+
+
+                                <td>
+                                    {% if candidacy.role == "Admin" %}
+                                    <a href="{{ path('admin_change_role1',{id:candidacy.id}) }}" class="btn btn-sm btn-info">Changer rôle</a>
+                                    {% else %}
+                                        <a href="{{ path('admin_change_role2',{id:candidacy.id}) }}" class="btn btn-sm btn-info">Changer rôle</a>
+                                        {% endif %}
+                                    <a href="{{ path('admins_delete',{id:candidacy.id}) }}" class="btn btn-sm btn-danger">Supprimer</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+
+                {% else %}
+                    <p>Aucune candidature n'a été trouvée...</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <br/>
+
+                <h1>Liste des produits</h1>
+
+                <br/>
+                <a href="{{ path('newprod',{}) }}" class="btn btn-sm btn-success">Ajouter un produit</a>
+
+                <br>
+                {% if produits|length > 0 %}
+
+                    <table class="table table-sm table-hover table table-striped table-bordered ">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Titre</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Année</th>
+                            <th scope="col">Réalisateur</th>
+                            <th scope="col">Stock</th>
+                            <th scope="col">Prix</th>
+
+                            <th scope="col">-</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for unproduit in produits %}
+                            <tr>
+                                <td><b>{{ unproduit.id }}</b></td>
+                                <td>{{ unproduit.libelle }}</td>
+                                <td>{{ unproduit.type }}</td>
+                                <td>{{ unproduit.anne }}</td>
+                                <td>{{ unproduit.realisateur }} </td>
+                                <td>{{ unproduit.stock }}</td>
+                                <td>{{ unproduit.prixht }}</td>
+
+
+                                <td>
+
+
+                                    <a href="{{ path('produit_edit', {'id': unproduit.id}) }}" class="btn btn-sm btn-success">Modifier</a>
+
+                                    <a href="{{ path('supprprod',{id:unproduit.id}) }}" class="btn btn-sm btn-danger">Supprimer</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+
+                {% else %}
+                    <p>Aucune candidature n'a été trouvée...</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <br/>
+
+                <h1>Liste des Magasins</h1>
+                <br/>
+                <a href="{{ path('newmag',{}) }}" class="btn btn-sm btn-success">Ajouter un magasins</a>
+
+                <br>
+
+                <br/>
+
+                {% if magasins|length > 0 %}
+
+                    <table class="table table-sm table-hover table table-striped table-bordered ">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Titre</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Année</th>
+                            <th scope="col">Réalisateur</th>
+                            <th scope="col">Stock</th>
+                            <th scope="col">Prix</th>
+
+                            <th scope="col">-</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for unmagasin in magasins %}
+                            <tr>
+                                <td><b>{{ unmagasin.id }}</b></td>
+                                <td>{{ unmagasin.nom }}</td>
+                                <td>{{ unmagasin.horaireouverture }}</td>
+                                <td>{{ unmagasin.longitude }}</td>
+                                <td>{{ unmagasin.latitude }} </td>
+                                <td>{{ unmagasin.telephone }}</td>
+                                <td>{{ unmagasin.courriel }}</td>
+
+
+                                <td>
+
+
+                                    <a href="{{ path('magasin_edit', {'id': unmagasin.id}) }}" class="btn btn-sm btn-success">Modifier</a>
+
+                                    <a href="{{ path('supprmag',{id:unmagasin.id}) }}" class="btn btn-sm btn-danger">Supprimer</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+                    magasins
+
+                {% else %}
+                    <p>Aucun magasin n'a été trouvée...</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+
+
+
+    {{  include ('footer.html.twig') }}
+{% endblock %}
+
+
+
+</body>
+</html>

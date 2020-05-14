@@ -1,0 +1,89 @@
+App\Entity\Contact:
+  properties:
+    email:
+      - NotBlank:
+          message: "Le champ est requis"
+          groups: [Default]
+
+      - Length:
+          min: 1
+          max: 255
+          minMessage: "La valeur du champ est trop courte (min: 1)"
+          maxMessage: "La valeur du est trop longue (max: 255)"
+          groups: [Default]
+
+      - Email:
+          message: "{{ value }} est invalide."
+          groups: [Default]
+    name:
+      - NotBlank:
+          message: "Le champ est requis"
+          groups: [Default]
+      - Length:
+          min: 1
+          max: 255
+          minMessage: "La valeur du champ est trop courte (min: 1)"
+          maxMessage: "La valeur du est trop longue (max: 255)"
+          groups: [Default]
+
+    firstname:
+      - NotBlank:
+          message: "Le champ est requis"
+          groups: [Default]
+
+      - Length:
+          min: 1
+          max: 255
+          minMessage: "La valeur du champ est trop courte (min: 1)"
+          maxMessage: "La valeur du est trop longue (max: 255)"
+          groups: [Default]
+
+    codep:
+      - NotBlank:
+          message: "Le champ est requis"
+          groups: [Default]
+
+      - Length:
+          min: 1
+          max: 255
+          minMessage: "La valeur du champ est trop courte (min: 1)"
+          maxMessage: "La valeur du est trop longue (max: 255)"
+          groups: [Default]
+
+    rue:
+      - NotBlank:
+          message: "Le champ est requis"
+          groups: [Default]
+
+      - Length:
+          min: 1
+          max: 255
+          minMessage: "La valeur du champ est trop courte (min: 1)"
+          maxMessage: "La valeur du est trop longue (max: 255)"
+          groups: [Default]
+
+    ville:
+      - NotBlank:
+          message: "Le champ est requis"
+          groups: [Default]
+
+      - Length:
+          min: 1
+          max: 255
+          minMessage: "La valeur du champ est trop courte (min: 1)"
+          maxMessage: "La valeur du est trop longue (max: 255)"
+          groups: [Default]
+
+    mdp:
+      - NotBlank:
+          message: "Le champ est requis"
+          groups: [Default]
+
+      - Length:
+          min: 1
+          max: 255
+          minMessage: "La valeur du champ est trop courte (min: 1)"
+          maxMessage: "La valeur du est trop longue (max: 255)"
+          groups: [Default]
+
+
